@@ -12,7 +12,7 @@ putchar(i);
 if(i <= '8')
 {
 putchar(',');
-putchar(' '); 
+putchar(' ');
 }
 }
 putchar('\n');
