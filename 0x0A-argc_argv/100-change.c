@@ -3,7 +3,7 @@
 /**
 *main - funtion
 *@argc: legenth of argv
-*@argv: number of argummet
+*@argv: number of argumment
 *Return: Always 0
 */
 int main(int argc, char *argv[])
@@ -35,5 +35,5 @@ total -= coins[position] * aux;
 position++;
 }
 printf("%d\n", change);
-return (0); 
+return (0);
 }
