@@ -1,72 +1,64 @@
 #include "main.h"
 #include <stdlib.h>
 /**
-* wrdcnt - counts the number of words in a string
-* @s: string to count
+* ch_free_grid - frees a 2 dimensional array.
+* @grid: multidimensional array of char.
+* @height: height of the array.
 *
-* Return: int of number of words
+* Return: no return
 */
-int wrdcnt(char *s)
+void ch_free_grid(char **grid, unsigned int height)
 {
-int i, n = 0;
-for (i = 0; s[i]; i++)
+if (grid != NULL && height != 0)
 {
-if (s[i] == ' ')
-(
-if (s[i + 1] != ' ' && s[i + 1] != '\0')
-n++;
+for (; height > 0; height--)
+free(grid[height]);
+free(grid[height]);
+free(grid);
 }
-else if (i == 0)
-n++;
-}
-n++;
-return (n);
 }
 /**
-* strtow - splits a string into words
-* @str: string to split
+* strtow - splits a string into words.
+* @str: string.
 *
-* Return: pointer to an array of strings
+* Return: pointer of an array of integers
 */
 char **strtow(char *str)
 {
-int i, j, k, l, n = 0, wc = 0;
-char **w;
+char **aout;
+unsigned int c, height, i, j, a1;
 if (str == NULL || *str == '\0')
 return (NULL);
-n = wrdcnt(str);
-if (n == 1)
-return (NULL);
-w = (char **)malloc(n * sizeof(char *));
-if (w == NULL)
-return (NULL);
-w[n - 1] = NULL;
-i = 0;
-while (str[i])
+for (c = height = 0; str[c] != '\0'; c++)
+if (str[c] != ' ' && (str[c + 1] == ' ' || str[c + 1] == '\0'))
+height++;
+aout = malloc((height + 1) * sizeof(char *));
+if (aout == NULL || height == 0)
 {
-if (str[i] != ' ' && (i == 0 || str[i - 1] == ' '))
-{
-for (j = 1; str[i + j] != ' ' && str[i + j]; j++)
-;
-j++;
-w[wc] = (char *)malloc(j * sizeof(char));
-j--;
-if (w[wc] == NULL)
-{
-for (k = 0; k < wc; k++)
-free(w[k]);
-free(w[n - 1]);
-free(w);
+free(aout);
 return (NULL);
 }
-for (l = 0; l < j; l++)
-w[wc][l] = str[i + l];
-w[wc][l] = '\0';
-wc++;
-i += j;
+for (i = a1 = 0; i < height; i++)
+{
+for (c = a1; str[c] != '\0'; c++)
+{
+if (str[c] == ' ')
+a1++;
+if (str[c] != ' ' && (str[c + 1] == ' ' || str[c + 1] == '\0'))
+{
+aout[i] = malloc((c - a1 + 2) * sizeof(char));
+if (aout[i] == NULL)
+{
+ch_free_grid(aout, i);
+return (NULL);
 }
-else
-i++;
+break;
 }
-return (w);
+}
+for (j = 0; a1 <= c; a1++, j++)
+aout[i][j] = str[a1];
+aout[i][j] = '\0';
+}
+aout[i] = NULL;
+return (aout);
 }
