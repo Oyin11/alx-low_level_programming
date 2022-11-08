@@ -12,7 +12,7 @@ if (n < 0)
 _putchar(45);
 m = n * -1;
 }
-else  
+else
 {
 m = n;
 }
@@ -24,7 +24,6 @@ d /= 10;
 count *= 10;
 }
 for (; count >= 1; count /= 10)
-}
-_putchar(((m / count) % 10) + 48);
-} 
+{
+_ptchar(((m / count) % 10) + 48);
 }
