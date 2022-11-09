@@ -19,7 +19,7 @@ if (s[a] == accept[b])
 s += a;
 return (s);
 }
-b++;	  
+b++;
 }
 a++;
 }
