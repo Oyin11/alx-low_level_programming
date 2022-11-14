@@ -1,11 +1,12 @@
-#include <stdio.h
+#include <stdio.h>
+#define FILE_NAME __FILE__
 /**
-* main - Prints the file name of the program
+* main - print the name of the file the program is compiled from.
 *
-* Return: Always zero
+* Return: Always 0.
 */
 int main(void)
 {
-printf("%s\n", __FILE__)
+printf("%s\n", FILE_NAME);
 return (0);
 }
