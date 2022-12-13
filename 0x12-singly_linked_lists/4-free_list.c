@@ -16,5 +16,5 @@ head = head->next;
 free(temp->str);
 free(temp);
 }
-free(head); 
+free(head);
 }
